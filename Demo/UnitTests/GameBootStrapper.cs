@@ -29,12 +29,12 @@ namespace BowlingKataTest
 
                 RuleBuilder<Game>.Instance()
                 .Given(g => g.CurrentFrame.IsFinalFrame)
-                .Then(g => g.CurrentFrame.ScoreRule = (f) => f.Rolls.Sum<ushort>(r => r)).Build(),
+                .Then(g => g.CurrentFrame.ScoreRule = (f) => f.Rolls.Sum(r => r)).Build(),
 
                 RuleBuilder<Game>.Instance()
                 .Given(g => !g.CurrentFrame.IsFinalFrame)
                 .And(g =>  g.CurrentFrame.Rolls.Sum(r => r) < 10)
-                .Then(g => g.CurrentFrame.ScoreRule = (f) => f.Rolls.Sum<ushort>(r => r)).Build(),
+                .Then(g => g.CurrentFrame.ScoreRule = (f) => f.Rolls.Sum(r => r)).Build(),
 
                 RuleBuilder<Game>.Instance()
                 .Given(g => !g.CurrentFrame.IsFinalFrame)

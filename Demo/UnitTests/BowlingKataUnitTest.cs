@@ -1,12 +1,11 @@
 ﻿using System;
 
 using BowlingKata;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Unity;
+using Xunit;
 
 namespace BowlingKataTest
 {
-    [TestClass]
     public class BowlingKataUnitTest
     {
         Game game;
@@ -16,116 +15,104 @@ namespace BowlingKataTest
         {
             _container = new UnityContainer();
             GameBootStrapper.Configure(_container);
-        }
-
-        [TestInitialize]
-        public void Cleanup()
-        {         
             game = _container.Resolve<Game>();
         }
 
         #region Original Unit Tests
 
-            [TestMethod]
+            [Fact]
             public void AllGutterBalls()
             {
                 game.RollMany(20, 0);
-                Assert.AreEqual(0, game.Score());
+                Assert.Equal(0, game.Score());
             }
 
-            [TestMethod]
+            [Fact]
             public void PerfectGame()
             {
                 game.RollMany(21, 10);
-                Assert.AreEqual(300, game.Score());
+                Assert.Equal(300, game.Score());
             }
 
-            [TestMethod]
+            [Fact]
             public void ThreeSpares()
             {
                 game.RollMany(3, 5);
-                Assert.AreEqual(20, game.Score());
+                Assert.Equal(20, game.Score());
             }
 
-        [TestMethod]
+            [Fact]
             public void AllSpares()
             {
                 game.RollMany(21, 5);
-                Assert.AreEqual(150, game.Score());
+                Assert.Equal(150, game.Score());
             }
 
-            [TestMethod]
+            [Fact]
             public void AllOnes()
             {
                 game.RollMany(20, 1);
-                Assert.AreEqual(20, game.Score());
+                Assert.Equal(20, game.Score());
             }
 
         #endregion
 
         #region Extended Domain Tests
-            [TestMethod]
+            [Fact]
             public void Turkey()
             {
                 game.RollMany(3, 10);
-                Assert.AreEqual(40, game.Score());
+                Assert.Equal(40, game.Score());
 
             }
 
-            [TestMethod]
+            [Fact]
             public void OneStrike()
             {
                 game.Roll(10).Roll(5).Roll(5);
-                Assert.AreEqual(25, game.Score());
+                Assert.Equal(25, game.Score());
             }
 
-            [TestMethod]
-            [ExpectedException(typeof(InvalidOperationException))]
+            [Fact]
             public void InvalidBonus()
             {
-                game.RollMany(21, 1);
+            Assert.Throws<InvalidOperationException>(() => game.RollMany(21, 1));
             }
 
-            [TestMethod]
-            [ExpectedException(typeof(ArgumentException))]
+            [Fact]
             public void TooManyPinsForFrame()
             {
-                game.Roll(9).Roll(9);
+                Assert.Throws<ArgumentException>(() => game.Roll(9).Roll(9));
             }
 
-            [TestMethod]
-            [ExpectedException(typeof(ArgumentException))]
+            [Fact]
             public void TooManyPinsForRoll()
             {
-                game.Roll(11);
+                Assert.Throws<ArgumentException>(() => game.Roll(11));
             }
 
-        [TestMethod]
-            [ExpectedException(typeof(InvalidOperationException))]
+            [Fact]
             public void TooManyRollsInFinalFrame()
             {
-                game.RollMany(18, 10).RollMany(3,1);
+            Assert.Throws<InvalidOperationException>(() => game.RollMany(18, 10).RollMany(3,1));
             }
 
-            [TestMethod]
-            [ExpectedException(typeof(InvalidOperationException))]
+            [Fact]
             public void TooManyRolls()
             {
-                game.RollMany(22, 1);
+            Assert.Throws<InvalidOperationException>(() => game.RollMany(22, 1));
             }
 
-            [TestMethod]
-            [ExpectedException(typeof(InvalidOperationException))]
+            [Fact]
             public void TooManySpares()
             {
-                game.RollMany(22, 5);
+                Assert.Throws<InvalidOperationException>(() => game.RollMany(22, 5));
             }
 
-            [TestMethod]
-            [ExpectedException(typeof(InvalidOperationException))]
+            [Fact]
             public void TooManyStrikes()
             {
-                game.RollMany(22, 10);
+                Assert.Throws<InvalidOperationException>(() => game.RollMany(22, 10));
             }
         #endregion
     }

@@ -43,13 +43,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\JasonSoft.RDD.csproj">
-      <Project>{27938b22-df7e-48ec-b324-c2da6b36a923}</Project>
-      <Name>JasonSoft.RDD</Name>
-    </ProjectReference>
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <ProjectReference Include="..\..\JasonSoft.RDD.InterceptionBehaviors\JasonSoft.RDD.InterceptionBehaviors.csproj">
+      <Project>{7e64afa2-e57b-4324-a89b-04ea24623ae3}</Project>
+      <Name>JasonSoft.RDD.InterceptionBehaviors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JasonSoft.RDD\JasonSoft.RDD.csproj">
+      <Project>{90a90f91-072f-4cd5-9bdd-696d33b38d28}</Project>
+      <Name>JasonSoft.RDD</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
