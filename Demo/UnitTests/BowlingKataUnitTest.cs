@@ -2,7 +2,7 @@
 
 using BowlingKata;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Practices.Unity;
+using Unity;
 
 namespace BowlingKataTest
 {

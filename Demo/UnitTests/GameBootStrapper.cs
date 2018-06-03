@@ -3,8 +3,10 @@
 using BowlingKata;
 using JasonSoft.RDD;
 using JasonSoft.RDD.Helpers;
-using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.InterceptionExtension;
+using Unity;
+using Unity.Injection;
+using Unity.Interception.ContainerIntegration;
+using Unity.Interception.Interceptors.TypeInterceptors.VirtualMethodInterception;
 
 namespace BowlingKataTest
 {
